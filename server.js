@@ -43,9 +43,9 @@ if (!isProduction) {
 
 // Proxy
 app.use(
-  "/api",
+  "https://news-advertising.onrender.com/api",
   createProxyMiddleware({
-    target: process.env.WEB_URL,
+    target: process.env.WEB_URL || "https://cnnespanol.cnn.com/",
     changeOrigin: true,
   })
 );
