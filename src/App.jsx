@@ -1,10 +1,10 @@
-import "./styles.css";
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import {
   getReutersData,
   getCnnData,
   getPaisData,
-} from "./services/graphql.services";
+} from "@/services/graphql.services";
+import { Button } from "@/components/ui/button";
 
 const Carousel = lazy(() => import("./components/Carousel"));
 const Frame = lazy(() => import("./components/Frame"));
@@ -26,15 +26,16 @@ function App() {
   }, []);
 
   return (
-    <div className="mainContainer">
+    <div className="bg-[#2c2c2c] w-full h-[100vh]">
       <div className="adsConatiner">
         <Suspense fallback={<p>Loading...</p>}>
           {data && <Carousel data={data} />}
         </Suspense>
       </div>
-
       <div className="iframeContainer">
-        <Suspense fallback={<p>Loading...</p>}>{/* <Frame /> */}</Suspense>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Frame />
+        </Suspense>
       </div>
     </div>
   );
