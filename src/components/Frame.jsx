@@ -1,7 +1,7 @@
 import React from "react";
 
 function Frame({}) {
-  console.log(import.meta.env.VITE_PAGE_LOAD);
+  //console.log(import.meta.env.VITE_PAGE_LOAD);
   return (
     <iframe
       className="aplication"

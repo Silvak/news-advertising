@@ -63,7 +63,7 @@ app.get("/noadd", async (req, res) => {
 });*/
 
 // Serve HTML for React SSR
-app.use("/", async (req, res) => {
+app.use("*", async (req, res) => {
   try {
     const url = req.originalUrl.replace(base, "");
 
