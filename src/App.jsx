@@ -33,7 +33,10 @@ function App() {
         </Suspense>
       </div>
       <div className="iframeContainer">
-        <Suspense fallback={<p>Loading...</p>}>{/* <Frame /> */}</Suspense>
+        <Suspense fallback={<p>Loading...</p>}>
+          {" "}
+          <Frame />
+        </Suspense>
       </div>
     </div>
   );
