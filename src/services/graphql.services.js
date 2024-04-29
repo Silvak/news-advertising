@@ -4,7 +4,24 @@ const graphcms = new GraphQLClient(
   "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clvilbfkl0lvr07wcro6vwv5k/master"
 );
 
-const QUERYCNN = gql`
+const QUERY_CNN = gql`
+  {
+    cnns {
+      active
+      createdAt
+      id
+      name
+      order
+      image {
+        url
+      }
+      publishedAt
+      updatedAt
+    }
+  }
+`;
+
+const QUERY_REUTERS = gql`
   {
     reuters {
       active
@@ -21,9 +38,9 @@ const QUERYCNN = gql`
   }
 `;
 
-const QUERYREUTERS = gql`
+const QUERY_PAIS = gql`
   {
-    reuters {
+    diarioElPais {
       active
       createdAt
       id
@@ -38,29 +55,36 @@ const QUERYREUTERS = gql`
   }
 `;
 
-const QUERYPAIS = gql`
-  {
-    reuters {
-      active
-      createdAt
-      id
-      name
-      order
-      image {
-        url
-      }
-      publishedAt
-      updatedAt
-    }
-  }
-`;
-
-export const getData = async () => {
+export const getCnnData = async () => {
   try {
     console.log("Realizando solicitud GraphQL...");
-    const { reuters } = await graphcms.request(QUERY);
+    const { cnns } = await graphcms.request(QUERY_CNN);
+    //console.log("Datos recibidos:", cnns);
+    return cnns;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+export const getReutersData = async () => {
+  try {
+    console.log("Realizando solicitud GraphQL...");
+    const { reuters } = await graphcms.request(QUERY_REUTERS);
     //console.log("Datos recibidos:", reuters);
     return reuters;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+export const getPaisData = async () => {
+  try {
+    console.log("Realizando solicitud GraphQL...");
+    const { diarioElPais } = await graphcms.request(QUERY_PAIS);
+    //console.log("Datos recibidos:", diarioElPais);
+    return diarioElPais;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;

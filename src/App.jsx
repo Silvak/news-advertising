@@ -1,6 +1,10 @@
 import "./styles.css";
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import { getData } from "./services/graphql.services";
+import {
+  getReutersData,
+  getCnnData,
+  getPaisData,
+} from "./services/graphql.services";
 
 const Carousel = lazy(() => import("./components/Carousel"));
 const Frame = lazy(() => import("./components/Frame"));
@@ -12,7 +16,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData();
+        const result = await getPaisData();
         setData(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -30,9 +34,7 @@ function App() {
       </div>
 
       <div className="iframeContainer">
-        <Suspense fallback={<p>Loading...</p>}>
-          <Frame />
-        </Suspense>
+        <Suspense fallback={<p>Loading...</p>}>{/* <Frame /> */}</Suspense>
       </div>
     </div>
   );
