@@ -26,7 +26,7 @@ function CarouselAds({ data }) {
     <div className="flex justify-center items-center w-full bg-black">
       <Carousel
         plugins={[plugin.current]}
-        className="w-full md:max-w-[60%]"
+        className="w-full max-w-[996px]"
         onMouseEnter={() => plugin.current.stop()}
         onMouseLeave={() => plugin.current.reset()}
       >

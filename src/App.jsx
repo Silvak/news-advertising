@@ -6,6 +6,10 @@ import {
 } from "@/services/graphql.services";
 import { Button } from "@/components/ui/button";
 
+// URLs
+const WEBS = ["reutres", "cnn", "elpais"];
+
+//components
 const CarouselAds = lazy(() => import("./components/CarouselAds"));
 const Frame = lazy(() => import("./components/Frame"));
 
@@ -16,7 +20,21 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getPaisData();
+        let result;
+        switch (import.meta.env.VITE_SITE) {
+          case "reuters":
+            result = await getReutersData();
+            break;
+          case "cnn":
+            result = await getCnnData();
+            break;
+          case "elpais":
+            result = await getPaisData();
+            break;
+          default:
+            // Establece una acción predeterminada o manejo de error si es necesario
+            break;
+        }
         setData(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,6 +42,8 @@ function App() {
     };
     fetchData();
   }, []);
+
+  //console.log(import.meta.env.VITE_SITE);
 
   return (
     <div className="bg-[#2c2c2c] w-full h-[100vh]">
@@ -34,7 +54,7 @@ function App() {
       </div>
       <div className="iframeContainer">
         <Suspense fallback={<p>Loading...</p>}>
-          {" "}
+          {/*  */}
           <Frame />
         </Suspense>
       </div>

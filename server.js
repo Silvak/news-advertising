@@ -3,6 +3,7 @@ import express from "express";
 import { Transform } from "node:stream";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import cors from "cors";
+import "dotenv/config";
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
@@ -44,7 +45,7 @@ if (!isProduction) {
 app.use(
   "/api",
   createProxyMiddleware({
-    target: "https://cnnespanol.cnn.com/",
+    target: process.env.WEB_URL,
     changeOrigin: true,
   })
 );

@@ -1,8 +1,6 @@
 import { GraphQLClient, gql } from "graphql-request";
 
-const graphcms = new GraphQLClient(
-  "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clvilbfkl0lvr07wcro6vwv5k/master"
-);
+const graphcms = new GraphQLClient(import.meta.env.VITE_GRAPHQL_API_URL);
 
 const QUERY_CNN = gql`
   {
