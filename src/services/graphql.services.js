@@ -6,7 +6,7 @@ const graphcms = new GraphQLClient(
 
 const QUERY_CNN = gql`
   {
-    cnns {
+    cnns(where: { active: true }) {
       active
       createdAt
       id
@@ -23,7 +23,7 @@ const QUERY_CNN = gql`
 
 const QUERY_REUTERS = gql`
   {
-    reuters {
+    reuters(where: { active: true }) {
       active
       createdAt
       id
@@ -40,7 +40,7 @@ const QUERY_REUTERS = gql`
 
 const QUERY_PAIS = gql`
   {
-    diarioElPais {
+    diarioElPais(where: { active: true }) {
       active
       createdAt
       id

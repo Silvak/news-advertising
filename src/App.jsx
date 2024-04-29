@@ -6,7 +6,7 @@ import {
 } from "@/services/graphql.services";
 import { Button } from "@/components/ui/button";
 
-const Carousel = lazy(() => import("./components/Carousel"));
+const CarouselAds = lazy(() => import("./components/CarouselAds"));
 const Frame = lazy(() => import("./components/Frame"));
 
 // Works also with SSR as expected
@@ -29,13 +29,11 @@ function App() {
     <div className="bg-[#2c2c2c] w-full h-[100vh]">
       <div className="adsConatiner">
         <Suspense fallback={<p>Loading...</p>}>
-          {data && <Carousel data={data} />}
+          {data && <CarouselAds data={data} />}
         </Suspense>
       </div>
       <div className="iframeContainer">
-        <Suspense fallback={<p>Loading...</p>}>
-          <Frame />
-        </Suspense>
+        <Suspense fallback={<p>Loading...</p>}>{/* <Frame /> */}</Suspense>
       </div>
     </div>
   );
