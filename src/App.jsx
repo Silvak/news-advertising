@@ -1,38 +1,40 @@
-import { Suspense, lazy } from "react";
-import reactLogo from "./assets/react.svg";
+import "./styles.css";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import { getData } from "./services/graphql.services";
+
+const Carousel = lazy(() => import("./components/Carousel"));
+const Frame = lazy(() => import("./components/Frame"));
 
 // Works also with SSR as expected
-const Card = lazy(() => import("./Card"));
-
 function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getData();
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="mainContainer">
+      <div className="adsConatiner">
+        <Suspense fallback={<p>Loading...</p>}>
+          {data && <Carousel data={data} />}
+        </Suspense>
       </div>
-      <h1>Vite + React</h1>
 
-      <Suspense fallback={<p>Loading card component...</p>}>
-        <Card />
-      </Suspense>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-
-      <iframe
-        class="aplication"
-        src="/api"
-        width="100"
-        height="100"
-        frameborder="0"
-      ></iframe>
-    </>
+      <div className="iframeContainer">
+        <Suspense fallback={<p>Loading...</p>}>
+          <Frame />
+        </Suspense>
+      </div>
+    </div>
   );
 }
 
