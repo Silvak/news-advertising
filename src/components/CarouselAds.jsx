@@ -23,7 +23,7 @@ function CarouselAds({ data }) {
   //console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>", imagesArr);
 
   return (
-    <div className="flex justify-center items-center w-full bg-black">
+    <div className="flex justify-center items-center w-full bg-black py-[12px] md:py-[8px] shadow-sm">
       <Carousel
         plugins={[plugin.current]}
         className="w-full max-w-[996px]"
@@ -34,7 +34,7 @@ function CarouselAds({ data }) {
           {imagesArr.map((element, index) => (
             <CarouselItem key={element.id}>
               <div className="">
-                <div className="flex h-[100px]">
+                <div className="flex h-[130px] md:h-[140px]">
                   <img
                     src={element.image.url}
                     alt={element.name}
