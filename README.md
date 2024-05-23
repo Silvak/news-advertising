@@ -1,4 +1,4 @@
-#NewsAdvertising
+# NewsAdvertising
 
 This project is a news advertising application developed with Vite, React and Express.
 
@@ -6,7 +6,7 @@ This project is a news advertising application developed with Vite, React and Ex
 
 Make sure to set the following environment variables in a `.env` file in the project root:
 
-\```env
+```env
 ### News site (options: reuters, elpais, cnn)
 VITE_SITE=site
 
@@ -18,25 +18,25 @@ VITE_PAGE_LOAD=specific_page
 
 ### GraphQL API URL
 VITE_GRAPHQL_API_URL=api_url
-\```
+```
 
-Example:
+### Example:
 
-\```env
+```env
 VITE_SITE=reuters
 WEB_URL=https://www.reuters.com/
 VITE_PAGE_LOAD=business/
 VITE_GRAPHQL_API_URL=https://....
-\```
+```
 
 ## Facility
 
 1. Clone this repository.
 2. Install dependencies using `npm`:
 
-\```bash
+```bash
 npm install
-\```
+```
 
 ## Available Scripts
 
